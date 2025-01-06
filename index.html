@@ -314,9 +314,6 @@
         <div class="style-wrapper">
             <!-- 极简风格 -->
             <div class="style-card active">
-                <div class="header">
-                    <h1>极简风格</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -340,9 +337,6 @@
 
             <!-- 品牌个性化 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>品牌个性化</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -366,9 +360,6 @@
 
             <!-- 柔和舒适风格 - 米色系 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>柔和舒适 - 米色</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -392,9 +383,6 @@
 
             <!-- 柔和舒适风格 - 蓝灰系 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>柔和舒适 - 蓝灰</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -418,9 +406,6 @@
 
             <!-- 情感激发型配色 - 红黄系 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>情感激发 - 红黄</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -444,9 +429,6 @@
 
             <!-- 情感激发型配色 - 橙色系 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>情感激发 - 橙色</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -470,9 +452,6 @@
 
             <!-- 高级暗黑风格 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>高级暗黑风格</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -490,9 +469,6 @@
 
             <!-- 清新绿色生态风 -->
             <div class="style-card">
-                <div class="header">
-                    <h1>清新绿色生态风</h1>
-                </div>
                 <button class="tips-button" aria-label="查看详情">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -527,7 +503,8 @@
             const cards = document.querySelectorAll('.style-card');
             const prevBtn = document.querySelector('.nav-button.prev');
             const nextBtn = document.querySelector('.nav-button.next');
-            let currentIndex = 0;
+            const navItems = document.querySelectorAll('.nav-item');
+            let currentIndex = 7; // 默认显示最后一个（清新绿色生态风）
 
             function updateCards(newIndex) {
                 cards.forEach((card, index) => {
@@ -539,6 +516,11 @@
                     }
                 });
 
+                // 更新导航栏激活状态
+                navItems.forEach((item, index) => {
+                    item.classList.toggle('active', index === newIndex);
+                });
+
                 // 更新按钮状态
                 prevBtn.style.opacity = newIndex === 0 ? '0.5' : '1';
                 prevBtn.style.pointerEvents = newIndex === 0 ? 'none' : 'auto';
@@ -547,6 +529,9 @@
 
                 currentIndex = newIndex;
             }
+
+            // 初始化显示
+            updateCards(currentIndex);
 
             // 按钮点击事件
             prevBtn.addEventListener('click', () => {
@@ -559,6 +544,13 @@
                 if (currentIndex < cards.length - 1) {
                     updateCards(currentIndex + 1);
                 }
+            });
+
+            // 导航点击事件
+            navItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    updateCards(index);
+                });
             });
 
             // 键盘导航
@@ -602,20 +594,6 @@
                             document.removeEventListener('click', closeInfo);
                         }
                     });
-                });
-            });
-
-            // 设置默认显示的卡片（清新绿色生态风）
-            currentIndex = 7; // 索引为7的卡片
-            updateCards(currentIndex);
-
-            // 添加导航点击事件
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    navItems.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                    updateCards(index);
                 });
             });
         });
