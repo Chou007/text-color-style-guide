@@ -2,6 +2,10 @@
 + 
 + 一个优雅的文字与底色搭配风格展示网站，帮助设计师和开发者快速找到合适的配色方案。
 + 
++ ## 在线预览
++ 
++ [查看在线演示](https://chou007.github.io/text-color-style-guide)
++ 
 + ## 功能特点
 + 
 + - 📱 响应式设计，支持各种设备
@@ -57,7 +61,7 @@
 + 
 + 1. 克隆仓库
 + ```bash
-+ git clone [repository-url]
++ git clone https://github.com/Chou007/text-color-style-guide.git
 + ```
 + 
 + 2. 直接在浏览器中打开 index.html 文件
